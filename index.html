@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4f2">
+<title>For You — Our First Month ♡</title>
+<style>
+:root{
+  --bg:#f7f4f2; --ink:#25201f; --muted:#766d69; --glass:rgba(255,255,255,.48);
+  --line:rgba(255,255,255,.72); --rose:#d98c9a; --rose2:#f2c5cc;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 12% 12%,rgba(242,197,204,.55),transparent 28%),
+    radial-gradient(circle at 88% 25%,rgba(205,214,255,.55),transparent 30%),
+    radial-gradient(circle at 50% 95%,rgba(255,224,188,.5),transparent 32%),var(--bg);
+  min-height:100vh; overflow-x:hidden;
+}
+body:before{
+  content:""; position:fixed; inset:-20%; z-index:-3;
+  background:conic-gradient(from 90deg,rgba(255,255,255,.25),rgba(217,140,154,.15),rgba(195,204,255,.2),rgba(255,255,255,.2));
+  filter:blur(70px); animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{to{transform:translate3d(4%,-3%,0) rotate(7deg)}}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.p{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.75);box-shadow:0 0 18px rgba(255,255,255,.9);animation:float linear infinite}
+@keyframes float{from{transform:translateY(105vh);opacity:0}15%{opacity:.8}85%{opacity:.6}to{transform:translateY(-10vh);opacity:0}}
+nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:10;
+  width:min(92%,720px); padding:9px 10px; display:flex;justify-content:center;gap:5px;
+  border:1px solid var(--line); background:rgba(255,255,255,.42); backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%); border-radius:999px; box-shadow:0 12px 35px rgba(62,44,45,.08)
+}
+nav a{color:#5c5350;text-decoration:none;font-size:12px;padding:9px 14px;border-radius:999px;transition:.25s}
+nav a:hover{background:rgba(255,255,255,.65);color:#231f1e}
+section{width:min(1080px,92%);margin:auto}
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:105px 0 60px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid var(--line);
+  background:rgba(255,255,255,.4);backdrop-filter:blur(18px);border-radius:999px;font-size:12px;color:var(--muted);
+  box-shadow:0 10px 30px rgba(67,45,48,.06)
+}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--rose);box-shadow:0 0 12px var(--rose)}
+h1{font-size:clamp(54px,12vw,118px);line-height:.88;letter-spacing:-.075em;margin:25px 0 20px;font-weight:650}
+h1 span{display:block;font-weight:350;color:#827775}
+.hero p{max-width:590px;margin:0 auto;color:var(--muted);font-size:clamp(15px,2.5vw,19px);line-height:1.65}
+.scroll{margin-top:42px;font-size:11px;color:#8d817d;letter-spacing:.16em;text-transform:uppercase}
+.card{
+  border:1px solid var(--line); background:var(--glass); backdrop-filter:blur(25px) saturate(145%);
+  -webkit-backdrop-filter:blur(25px) saturate(145%); border-radius:32px; box-shadow:0 25px 70px rgba(68,47,50,.09);
+}
+.section{padding:80px 0}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#a08e89;margin-bottom:12px}
+h2{font-size:clamp(34px,6vw,64px);letter-spacing:-.055em;line-height:1;margin:0 0 16px}
+.lead{color:var(--muted);line-height:1.7;max-width:650px}
+.love-card{padding:clamp(28px,6vw,62px);text-align:center}
+.love-card .heart{font-size:38px;margin-bottom:18px;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.1)}}
+.love-card p{font-family:Georgia,serif;font-size:clamp(19px,3vw,28px);line-height:1.65;margin:20px auto;color:#433a37;max-width:760px}
+.signature{color:#a17d83;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.memory{min-height:280px;overflow:hidden;position:relative;display:flex;align-items:end;padding:20px;background-size:cover;background-position:center}
+.memory:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(27,20,21,.62))}
+.memory .caption{position:relative;z-index:1;color:white}
+.memory strong{display:block;font-size:18px;margin-bottom:5px}
+.memory span{font-size:12px;opacity:.8}
+.photo1{background-image:linear-gradient(135deg,#e9d7d8,#c9c4d5)}
+.photo2{background-image:linear-gradient(135deg,#d8e0e7,#e7c7c9)}
+.photo3{background-image:linear-gradient(135deg,#f0d8c7,#d5c8df)}
+.counter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px}
+.stat{padding:24px 12px;text-align:center}
+.num{font-size:clamp(28px,5vw,48px);letter-spacing:-.06em;font-weight:650}
+.label{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:#938682;margin-top:4px}
+.timeline{display:grid;gap:12px;margin-top:30px}
+.item{display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:start;padding:20px}
+.item .date{font-size:11px;color:#aa8188;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}
+.item h3{margin:0 0 6px;font-size:17px}.item p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
+.final{text-align:center;padding-bottom:110px}
+.final .card{padding:55px 25px}
+button{
+  border:0;background:#282221;color:white;padding:14px 22px;border-radius:999px;font:inherit;font-size:13px;
+  box-shadow:0 12px 28px rgba(42,31,29,.18);cursor:pointer;transition:.25s
+}
+button:hover{transform:translateY(-2px);box-shadow:0 16px 35px rgba(42,31,29,.23)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+.heart-fx{position:fixed;pointer-events:none;z-index:99;font-size:16px;animation:heartUp 1.2s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes heartUp{0%{opacity:0;transform:translate(-50%,-20%) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% - 75px)) scale(1.15) rotate(var(--r))}}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;z-index:20;padding:12px 17px;border:1px solid var(--line);background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border-radius:999px;font-size:12px;transition:.3s;box-shadow:0 10px 35px rgba(50,35,38,.1)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:#a19490;font-size:11px;padding:0 0 25px}
+@media(max-width:700px){
+  nav{top:10px}nav a{padding:8px 9px;font-size:10px}
+  .grid{grid-template-columns:1fr}.memory{min-height:230px}
+  .counter{grid-template-columns:repeat(2,1fr)}
+  .item{grid-template-columns:55px 1fr}
+}
+
+/* Full-screen secret surprise */
+.surprise-overlay{
+  position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:0;
+  background:rgba(246,242,243,.48);backdrop-filter:blur(34px) saturate(155%);
+  -webkit-backdrop-filter:blur(34px) saturate(155%);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility .45s ease;
+}
+.surprise-overlay.open{opacity:1;visibility:visible;pointer-events:auto}
+.surprise-scene{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  display:grid;grid-template-rows:auto 1fr auto;align-items:center;
+  padding:clamp(20px,4vw,44px);
+}
+.surprise-scene:before{
+  content:"";position:absolute;inset:-18%;z-index:-2;
+  background:radial-gradient(circle at 25% 25%,rgba(242,197,204,.58),transparent 30%),
+             radial-gradient(circle at 80% 70%,rgba(202,214,248,.62),transparent 31%),
+             rgba(255,255,255,.12);
+  filter:blur(28px);animation:surpriseBreath 12s ease-in-out infinite alternate;
+}
+@keyframes surpriseBreath{to{transform:translate3d(2%,-2%,0) scale(1.05)}}
+.surprise-topline{
+  position:relative;z-index:5;display:flex;justify-content:space-between;
+  width:min(1180px,100%);margin:auto;font-size:9px;letter-spacing:.24em;
+  text-transform:uppercase;color:#8d7b7d
+}
+.close-surprise{
+  position:absolute;right:clamp(18px,4vw,44px);top:clamp(14px,3vw,34px);z-index:20;
+  width:44px;height:44px;padding:0;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.42);color:#4c4341;border:1px solid rgba(255,255,255,.82);
+  box-shadow:0 12px 30px rgba(51,37,40,.09);font-size:27px;font-weight:300;line-height:1;
+}
+.close-surprise:hover{background:rgba(255,255,255,.72);transform:none;box-shadow:0 12px 30px rgba(51,37,40,.09)}
+.photo-stage{
+  position:relative;width:min(470px,68vw);height:min(59svh,680px);justify-self:center;
+  display:grid;place-items:center;isolation:isolate;
+}
+.photo-haze{
+  position:absolute;inset:9%;z-index:-1;border-radius:38px;background:rgba(255,255,255,.5);
+  filter:blur(24px);box-shadow:0 35px 100px rgba(53,39,42,.22)
+}
+.photo-frame{
+  position:relative;width:100%;height:100%;overflow:hidden;border-radius:34px;
+  border:1px solid rgba(255,255,255,.88);background:rgba(255,255,255,.35);
+  box-shadow:0 28px 90px rgba(49,35,38,.22),inset 0 1px 0 rgba(255,255,255,.95);
+  transform:translateY(14px) scale(.96);opacity:0;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .7s ease;
+}
+.surprise-overlay.open .photo-frame{transform:none;opacity:1}
+.photo-frame img{
+  width:100%;height:100%;display:block;object-fit:cover;
+  filter:saturate(.95) contrast(.98);transform:scale(1.035);
+  transition:opacity .65s ease,transform 4.4s ease;
+}
+.photo-frame img.fade-out{opacity:0;transform:scale(1.09)}
+.photo-frame img.fade-in{opacity:1;transform:scale(1.035)}
+.photo-sheen{
+  pointer-events:none;position:absolute;inset:-20%;
+  background:linear-gradient(120deg,transparent 36%,rgba(255,255,255,.3) 48%,transparent 58%);
+  transform:translateX(-65%) rotate(3deg);transition:transform 1.6s ease;
+}
+.surprise-overlay.open .photo-sheen{transform:translateX(65%) rotate(3deg)}
+.surprise-copy-wrap{position:relative;z-index:5;text-align:center;max-width:760px;width:92%;margin:-3vh auto 0}
+.surprise-mini{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#9a7e82;margin-bottom:14px}
+.surprise-title{
+  font-size:clamp(42px,7vw,82px);line-height:.91;letter-spacing:-.073em;font-weight:650;color:#272120;
+  text-shadow:0 2px 20px rgba(255,255,255,.5)
+}
+.surprise-title span{font-weight:350;color:#6d6260}
+.surprise-copy{
+  width:min(630px,100%);margin:18px auto 0;color:#574d4a;font-family:Georgia,serif;
+  font-size:clamp(15px,2.2vw,21px);line-height:1.56;
+  text-shadow:0 1px 10px rgba(255,255,255,.45)
+}
+.surprise-line{width:48px;height:1px;background:#c6979f;margin:18px auto 11px}
+.surprise-sign{font-size:11px;letter-spacing:.1em;color:#946f75}
+.photo-progress{display:flex;justify-content:center;gap:7px;position:absolute;left:50%;bottom:92px;transform:translateX(-50%);z-index:8}
+.photo-progress span{width:5px;height:5px;border-radius:50%;background:rgba(99,78,80,.24);transition:.3s}
+.photo-progress span.active{width:18px;border-radius:99px;background:#a8757e}
+.music-dock{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;
+  width:min(360px,calc(100% - 40px));padding:10px 12px;display:flex;align-items:center;justify-content:space-between;
+  border-radius:22px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.78);
+  backdrop-filter:blur(25px) saturate(140%);-webkit-backdrop-filter:blur(25px) saturate(140%);
+  box-shadow:0 18px 45px rgba(53,39,42,.13)
+}
+.music-meta{display:flex;gap:10px;align-items:center;min-width:0}
+.music-meta .music-dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%;background:#b97984;box-shadow:0 0 14px rgba(185,121,132,.6)}
+.music-meta strong{display:block;font-size:11px;font-weight:650;color:#443b39}
+.music-meta small{display:block;margin-top:2px;font-size:9px;color:#897a77;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-toggle{
+  width:34px;height:34px;padding:0;border-radius:50%;background:#302826;color:#fff;border:0;
+  display:grid;place-items:center;font-size:11px;box-shadow:none
+}
+.music-toggle:hover{transform:none;box-shadow:none}
+.swipe-hint{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);z-index:8;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#9b8b88}
+@media(max-width:600px){
+  .surprise-scene{padding:17px}
+  .surprise-topline{font-size:7px;letter-spacing:.18em;padding-right:45px}
+  .photo-stage{width:min(82vw,390px);height:min(48svh,520px)}
+  .photo-frame{border-radius:28px}
+  .surprise-copy-wrap{margin:-1vh auto 0}
+  .surprise-mini{font-size:8px;letter-spacing:.18em}
+  .surprise-title{font-size:clamp(38px,11vw,62px)}
+  .surprise-copy{font-size:14px;line-height:1.48;margin-top:13px}
+  .surprise-line{margin:13px auto 9px}
+  .photo-progress{bottom:77px}
+  .music-dock{bottom:22px}
+  .swipe-hint{bottom:7px;font-size:7px}
+}
+
+
+/* Final gallery treatment */
+.gallery-grid{align-items:stretch}
+.gallery-card{
+  min-height:340px;padding:0;display:flex;align-items:stretch;isolation:isolate;
+  border-radius:30px;background:rgba(255,255,255,.38)
+}
+.gallery-card img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.015);transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease;
+  filter:saturate(.94) contrast(.98)
+}
+.gallery-card:before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(20,15,16,.02) 28%,rgba(20,15,16,.72) 100%)
+}
+.gallery-card:hover img{transform:scale(1.045);filter:saturate(1) contrast(1.01)}
+.gallery-card .caption{padding:20px 20px 21px}
+.gallery-card strong{letter-spacing:-.02em}
+.gallery-card span{display:block;margin-top:5px}
+@media(max-width:700px){.gallery-card{min-height:420px}.gallery-card .caption{padding:18px}.gallery-card strong{font-size:17px}}
+
+
+.heart-fx{
+  position:fixed;pointer-events:none;z-index:230;font-size:16px;color:#b87984;
+  animation:heartUp 1.35s cubic-bezier(.18,.8,.25,1) forwards;
+  filter:drop-shadow(0 4px 12px rgba(185,121,132,.18))
+}
+@keyframes heartUp{
+  0%{opacity:0;transform:translate(-50%,15%) scale(.55) rotate(-8deg)}
+  16%{opacity:.95}
+  100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% - 90px)) scale(1.12) rotate(var(--r))}
+}
+
+
+.surprise-progress-line{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(330px,58vw);height:2px;
+  background:rgba(95,72,75,.12);border-radius:99px;overflow:hidden;z-index:12
+}
+.surprise-progress-line:after{
+  content:"";display:block;width:0;height:100%;background:#b87984;border-radius:99px;
+  animation:surpriseProgress 23.0s linear 1 forwards;animation-play-state:paused
+}
+.surprise-overlay.open .surprise-progress-line:after{animation-play-state:running}
+@keyframes surpriseProgress{to{width:100%}}
+
+
+.gallery-lightbox{
+  position:fixed;inset:0;z-index:260;display:grid;place-items:center;padding:24px;
+  background:rgba(245,241,242,.5);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  opacity:0;visibility:hidden;pointer-events:none;transition:.35s
+}
+.gallery-lightbox.open{opacity:1;visibility:visible;pointer-events:auto}
+.lightbox-card{
+  width:min(720px,92vw);height:min(82svh,820px);overflow:hidden;position:relative;
+  border:1px solid rgba(255,255,255,.86);border-radius:32px;background:rgba(255,255,255,.42);
+  box-shadow:0 35px 100px rgba(50,36,39,.2)
+}
+.lightbox-card img{width:100%;height:100%;display:block;object-fit:contain;background:rgba(20,16,16,.08)}
+.lightbox-caption{position:absolute;left:18px;right:18px;bottom:18px;padding:13px 15px;
+  color:#fff;background:rgba(20,16,16,.3);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);border-radius:18px;font-size:12px}
+.lightbox-close{
+  position:absolute;right:20px;top:18px;z-index:2;width:42px;height:42px;border-radius:50%;
+  padding:0;background:rgba(255,255,255,.62);color:#4a403f;border:1px solid rgba(255,255,255,.82);
+  box-shadow:none;font-size:27px
+}
+.lightbox-close:hover{transform:none;box-shadow:none;background:rgba(255,255,255,.8)}
+
+</style>
+</head>
+<body>
+<div id="particles"></div>
+
+<nav>
+  <a href="#home">Home</a><a href="#letter">Letter</a><a href="#memories">Memories</a><a href="#us">Us</a>
+</nav>
+
+<main id="home">
+<section class="hero">
+  <div class="reveal">
+    <div class="badge"><i></i> one month of us</div>
+    <h1>For you,<span>my favorite person.</span></h1>
+    <p>I made this little corner of the internet just for you — because one month with my baby deserved more than a text message. ♡</p>
+    <div class="scroll">scroll slowly ↓</div>
+  </div>
+</section>
+
+<section id="letter" class="section">
+  <div class="love-card card reveal">
+    <div class="heart">♡</div>
+    <div class="kicker">A little letter</div>
+    <h2>One month.<br>Still feels unreal.</h2>
+    <p>Somehow, in just one month, you became part of so many little moments in my day. The random smiles, the waiting for your message, the tiny things I remember without trying… and the fact that this story began with me choosing you on your birthday. I wouldn’t trade any of it.</p>
+    <div class="signature">— yours, always ✦</div>
+  </div>
+</section>
+
+<section id="memories" class="section">
+  <div class="reveal">
+    <div class="kicker">Our little gallery</div>
+    <h2>Moments worth keeping.</h2>
+    <p class="lead">A few little pieces of her, kept here because some moments deserve to stay.</p>
+  </div>
+  <div class="grid gallery-grid">
+    <figure class="memory card gallery-card reveal">
+      <img src="assets/photo-7.webp" alt="A favorite memory" loading="lazy">
+      <figcaption class="caption"><strong>A moment I’d keep forever</strong><span>one of those little memories that stays</span></figcaption>
+    </figure>
+    <figure class="memory card gallery-card reveal">
+      <img src="assets/photo-8.webp" alt="A favorite memory" loading="lazy">
+      <figcaption class="caption"><strong>One of my favorite versions of you</strong><span>soft, simple, completely you</span></figcaption>
+    </figure>
+    <figure class="memory card gallery-card reveal">
+      <img src="assets/photo-9.webp" alt="A favorite memory" loading="lazy">
+      <figcaption class="caption"><strong>A little piece of us</strong><span>one month down, more to come</span></figcaption>
+    </figure>
+  </div>
+  </div>
+</section>
+
+<section id="us" class="section">
+  <div class="reveal">
+    <div class="kicker">The beginning</div>
+    <h2>Look how far<br>one month feels.</h2>
+    <p class="lead">Set the date below to make this counter yours.</p>
+  </div>
+  <div class="counter">
+    <div class="stat card reveal"><div class="num" id="days">30</div><div class="label">days</div></div>
+    <div class="stat card reveal"><div class="num" id="hours">00</div><div class="label">hours</div></div>
+    <div class="stat card reveal"><div class="num" id="mins">00</div><div class="label">minutes</div></div>
+    <div class="stat card reveal"><div class="num" id="secs">00</div><div class="label">seconds</div></div>
+  </div>
+
+  <div class="timeline">
+    <div class="item card reveal"><div class="date">20 JUL</div><div><h3>Your birthday. Our beginning.</h3><p>The day I proposed to you — and the day your birthday became one of my favorite dates in the world.</p></div></div>
+    <div class="item card reveal"><div class="date">Since</div><div><h3>A hundred tiny moments</h3><p>Conversations, jokes, calls, random thoughts — all the little things that became special because they were with you.</p></div></div>
+    <div class="item card reveal"><div class="date">NOW</div><div><h3>Happy first month, sweetheart.</h3><p>One chapter is complete. I’m keeping the rest of the story open.</p></div></div>
+  </div>
+</section>
+
+<section class="section final">
+  <div class="card reveal">
+    <div class="heart">♥</div>
+    <h2>Happy first month,<br>baby. ♡</h2>
+    <p class="lead" style="margin:0 auto 26px">If you ever wonder how much you mean to me, come back here. I'll keep adding little pieces of us.</p>
+    <button id="surprise">one tiny surprise ✨</button>
+  </div>
+</section>
+</main>
+
+
+<div class="surprise-overlay" id="surpriseOverlay" aria-hidden="true">
+  <div class="surprise-orb orb-a"></div>
+  <div class="surprise-orb orb-b"></div>
+
+  <div class="surprise-scene">
+    <div class="surprise-topline">
+      <span>FOR MY BABY</span>
+      <span>20 · 07 · 2026</span>
+    </div>
+
+    <button class="close-surprise" id="closeSurprise" aria-label="Close">×</button>
+
+    <div class="photo-stage" id="photoStage">
+      <div class="photo-haze"></div>
+      <div class="photo-frame">
+        <img id="surprisePhoto" src="assets/photo-1.webp" alt="A favorite photo">
+        <div class="photo-sheen"></div>
+      </div>
+    </div>
+
+    <div class="surprise-copy-wrap">
+      <div class="surprise-mini" id="surpriseMini">A LITTLE SOMETHING FOR YOU</div>
+      <div class="surprise-title" id="surpriseTitle">You are<br><span>my favorite part.</span></div>
+      <p class="surprise-copy" id="surpriseCopy">
+        One month ago, on your birthday, I asked you to be mine.
+        Somehow that one moment already feels like the beginning of a whole lifetime of little memories.
+      </p>
+      <div class="surprise-line"></div>
+      <div class="surprise-sign" id="surpriseSign">happy first month, sweetheart ♡</div>
+    </div>
+
+    <div class="photo-progress" id="photoProgress" aria-label="Photo progress"></div>
+
+    <div class="music-dock card">
+      <div class="music-meta">
+        <span class="music-dot"></span>
+        <div>
+          <strong>our little song</strong>
+          <small>Perfect × Until I Found You</small>
+        </div>
+      </div>
+      <button class="music-toggle" id="musicToggle" aria-label="Pause music">Ⅱ</button>
+    </div>
+
+    <div class="surprise-progress-line" aria-hidden="true"></div><div class="swipe-hint">tap anywhere · let it play ♡</div>
+  </div>
+</div>
+
+
+<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close photo">×</button>
+  <div class="lightbox-card">
+    <img id="lightboxImg" alt="Expanded memory">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">You make my world a little softer. ♡</div>
+<footer>made with too much love & a little bit of code ✦</footer>
+
+<script>
+/* Change this date to the exact date you two started dating. */
+const anniversary = new Date("2026-07-20T00:00:00");
+
+function updateCounter(){
+  const now = new Date();
+  let diff = Math.max(0, now-anniversary);
+  const days = Math.floor(diff/86400000); diff%=86400000;
+  const hours = Math.floor(diff/3600000); diff%=3600000;
+  const mins = Math.floor(diff/60000); diff%=60000;
+  const secs = Math.floor(diff/1000);
+  document.querySelector("#days").textContent=String(days).padStart(2,"0");
+  document.querySelector("#hours").textContent=String(hours).padStart(2,"0");
+  document.querySelector("#mins").textContent=String(mins).padStart(2,"0");
+  document.querySelector("#secs").textContent=String(secs).padStart(2,"0");
+}
+updateCounter(); setInterval(updateCounter,1000);
+
+for(let i=0;i<28;i++){
+  const p=document.createElement("span"); p.className="p";
+  p.style.left=Math.random()*100+"%"; p.style.animationDuration=(10+Math.random()*16)+"s";
+  p.style.animationDelay=(-Math.random()*20)+"s"; p.style.opacity=.25+Math.random()*.55;
+  document.querySelector("#particles").appendChild(p);
+}
+
+document.addEventListener("pointerdown",(e)=>{
+  const h=document.createElement("div"); h.className="heart-fx";
+  h.textContent=["♡","♥","୨୧"][Math.floor(Math.random()*3)];
+  h.style.left=e.clientX+"px"; h.style.top=e.clientY+"px";
+  h.style.setProperty("--x",(Math.random()*46-23)+"px");
+  h.style.setProperty("--r",(Math.random()*26-13)+"deg");
+  document.body.appendChild(h); setTimeout(()=>h.remove(),1200);
+});
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+
+const galleryLightbox=document.querySelector("#galleryLightbox");
+const lightboxImg=document.querySelector("#lightboxImg");
+const lightboxCaption=document.querySelector("#lightboxCaption");
+const lightboxClose=document.querySelector("#lightboxClose");
+document.querySelectorAll(".gallery-card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    const img=card.querySelector("img");
+    lightboxImg.src=img.src;
+    lightboxCaption.textContent=card.querySelector("strong").textContent;
+    galleryLightbox.classList.add("open");
+    galleryLightbox.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  });
+});
+function closeLightbox(){
+  galleryLightbox.classList.remove("open");
+  galleryLightbox.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+lightboxClose.addEventListener("click",closeLightbox);
+galleryLightbox.addEventListener("click",(e)=>{if(e.target===galleryLightbox)closeLightbox()});
+
+const surpriseOverlay=document.querySelector("#surpriseOverlay");
+const surprisePhoto=document.querySelector("#surprisePhoto");
+const surpriseMini=document.querySelector("#surpriseMini");
+const surpriseTitle=document.querySelector("#surpriseTitle");
+const surpriseCopy=document.querySelector("#surpriseCopy");
+const surpriseSign=document.querySelector("#surpriseSign");
+const photoProgress=document.querySelector("#photoProgress");
+const musicToggle=document.querySelector("#musicToggle");
+const song=new Audio("assets/our-song.mp3");
+song.preload="auto";
+song.volume=.62;
+
+// The uploaded track is 22.7s long. It begins at 0:00 by default.
+const SONG_START=0;
+const photos=[
+  {src:"assets/photo-1.webp", mini:"JUST LOOK AT YOU", title:"My favorite<br><span>girl.</span>", copy:"Somehow you can make even an ordinary photo feel like one of my favorite memories.", sign:"pretty, as always ♡"},
+  {src:"assets/photo-2.webp", mini:"ONE OF THOSE MOMENTS", title:"Still<br><span>smiling.</span>", copy:"There are little versions of you that live rent-free in my head — and I hope they stay there forever.", sign:"my sweetheart ♡"},
+  {src:"assets/photo-3.webp", mini:"THIS SMILE", title:"That smile<br><span>gets me.</span>", copy:"I could probably write a hundred things about you and still miss the tiny reasons you became so special to me.", sign:"my honey ♡"},
+  {src:"assets/photo-4.webp", mini:"MY PERSON", title:"You make<br><span>things softer.</span>", copy:"The best part isn't some grand moment. It's how you slowly became part of the little moments too.", sign:"always, baby ♡"},
+  {src:"assets/photo-5.webp", mini:"AND THEN THERE'S YOU", title:"My safe<br><span>little place.</span>", copy:"One month is only a beginning. I already have so many reasons to be grateful that the beginning was you.", sign:"love you, sweetheart ♡"},
+  {src:"assets/photo-6.webp", mini:"OUR PHOTO", title:"Us.<br><span>Finally.</span>", copy:"And this is my favorite part of all — not just me admiring you, but a photo of us. One month down. Our story just started.", sign:"happy first month, my baby ♡"}
+];
+
+let photoIndex=0, photoTimer=null, heartsDone=false, songStarted=false;
+
+photos.forEach((p)=>{
+  const pre=new Image(); pre.src=p.src;
+  const dot=document.createElement("span"); dot.setAttribute("aria-hidden","true"); photoProgress.appendChild(dot);
+});
+
+function renderPhoto(index, instant=false){
+  photoIndex=index;
+  const item=photos[index];
+  if(!instant){
+    surprisePhoto.classList.remove("fade-in");
+    surprisePhoto.classList.add("fade-out");
+    setTimeout(()=>{
+      surprisePhoto.src=item.src;
+      surprisePhoto.alt="Our memory "+(index+1);
+      surpriseMini.textContent=item.mini;
+      surpriseTitle.innerHTML=item.title;
+      surpriseCopy.textContent=item.copy;
+      surpriseSign.textContent=item.sign;
+      surprisePhoto.classList.remove("fade-out");
+      surprisePhoto.classList.add("fade-in");
+    },360);
+  }else{
+    surprisePhoto.src=item.src;
+    surprisePhoto.alt="Our memory "+(index+1);
+    surpriseMini.textContent=item.mini;
+    surpriseTitle.innerHTML=item.title;
+    surpriseCopy.textContent=item.copy;
+    surpriseSign.textContent=item.sign;
+    surprisePhoto.classList.add("fade-in");
+  }
+  [...photoProgress.children].forEach((dot,i)=>dot.classList.toggle("active",i===index));
+}
+
+function scheduleNext(){
+  clearTimeout(photoTimer);
+  const duration = photoIndex===photos.length-1 ? 6000 : 3400;
+  photoTimer=setTimeout(()=>{
+    if(photoIndex<photos.length-1){
+      renderPhoto(photoIndex+1);
+      scheduleNext();
+    }
+  },duration);
+}
+
+function scatterHearts(){
+  const count=72;
+  for(let i=0;i<count;i++){
+    setTimeout(()=>{
+      const h=document.createElement("div");
+      h.className="heart-fx";
+      h.textContent=["♡","♥","♡","୨୧"][Math.floor(Math.random()*4)];
+      h.style.left=(Math.random()*100)+"vw";
+      h.style.top=(20+Math.random()*78)+"vh";
+      h.style.fontSize=(10+Math.random()*20)+"px";
+      h.style.opacity=(.45+Math.random()*.5).toFixed(2);
+      h.style.setProperty("--x",(Math.random()*80-40)+"px");
+      h.style.setProperty("--r",(Math.random()*70-35)+"deg");
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),1250);
+    },i*22);
+  }
+}
+
+async function startSong(){
+  if(songStarted)return;
+  songStarted=true;
+  try{
+    song.currentTime=SONG_START;
+    await song.play();
+    musicToggle.textContent="Ⅱ";
+    musicToggle.setAttribute("aria-label","Pause music");
+  }catch(e){
+    songStarted=false;
+    musicToggle.textContent="▶";
+    musicToggle.setAttribute("aria-label","Play music");
+  }
+}
+
+const openSurprise=()=>{
+  surpriseOverlay.classList.add("open");
+  surpriseOverlay.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  renderPhoto(0,true);
+  scatterHearts();
+  setTimeout(()=>{heartsDone=true;startSong();scheduleNext();},1050);
+};
+
+const closeSurprise=()=>{
+  surpriseOverlay.classList.remove("open");
+  surpriseOverlay.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+  clearTimeout(photoTimer);
+  song.pause();
+  song.currentTime=0;
+  songStarted=false;
+  heartsDone=false;
+  musicToggle.textContent="Ⅱ";
+};
+
+document.querySelector("#surprise").addEventListener("click",openSurprise);
+document.querySelector("#closeSurprise").addEventListener("click",closeSurprise);
+surpriseOverlay.addEventListener("click",(e)=>{
+  if(e.target===surpriseOverlay)closeSurprise();
+  else if(!heartsDone) return;
+  else if(e.target.closest(".photo-stage") || e.target.closest(".surprise-copy-wrap")) return;
+});
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape" && surpriseOverlay.classList.contains("open"))closeSurprise();
+  if(e.key==="Escape" && galleryLightbox.classList.contains("open"))closeLightbox();
+});
+
+musicToggle.addEventListener("click",async(e)=>{
+  e.stopPropagation();
+  if(song.paused){
+    try{await song.play();musicToggle.textContent="Ⅱ";songStarted=true;}
+    catch(err){}
+  }else{
+    song.pause();musicToggle.textContent="▶";musicToggle.setAttribute("aria-label","Play music");
+  }
+});
+song.addEventListener("ended",()=>{
+  musicToggle.textContent="▶";musicToggle.setAttribute("aria-label","Play music");songStarted=false;
+});</script>
+</body>
+</html>
